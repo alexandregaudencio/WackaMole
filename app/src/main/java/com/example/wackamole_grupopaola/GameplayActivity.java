@@ -20,7 +20,7 @@ public class GameplayActivity extends AppCompatActivity {
 
     ArrayList<ImageView> imageViewList = new ArrayList<>();
 
-    float gameTimer = 100;
+    float gameTimer = 50;
     float maxGameTimer = 100;
     float spawnInterval = 3f;
     float spawnMaxInterval = 3f;
@@ -38,11 +38,6 @@ public class GameplayActivity extends AppCompatActivity {
 
     Player player = new Player();
     Random random = new Random();
-
-    //SCORE
-//    int hitMole = 0;
-//    int lostMole = 0;
-//    int score = 0;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -73,11 +68,9 @@ public class GameplayActivity extends AppCompatActivity {
         for (ImageView image: imageViewList) {
             image.setImageResource(R.drawable.buraco);
             image.setClickable(false);
-
         }
 
         highscoreDB = new HighscoreDB(getApplicationContext());
-
 
     }
 
@@ -86,14 +79,12 @@ public class GameplayActivity extends AppCompatActivity {
         super.onStart();
 
         nickTextView.setText( prefs.getString("Nickname", "CHAVE NÃO EXISTE." ));
-//        player.setNickname(prefs.getString("Nickname", "CHAVE NÃO EXISTE."));
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -121,8 +112,7 @@ public class GameplayActivity extends AppCompatActivity {
         CheckTimeToSpawn();
         timerTextView.setText("Time: "+Integer.toString((int)gameTimer));
 
-
-        if(gameTimer <= 0) {
+        if(gameTimer == 0) {
             GoOutSceneGameplay();
         }
 
@@ -133,13 +123,11 @@ public class GameplayActivity extends AppCompatActivity {
     private  void CheckTimeToSpawn() {
         if(spawnInterval  == 1) {
             MoleDown();
-
         }
 
         if(spawnInterval == 0) {
             MoleUp();
             spawnInterval =  spawnMaxInterval;
-
         }
 
         spawnInterval -= 1;
@@ -168,20 +156,18 @@ public class GameplayActivity extends AppCompatActivity {
 
     private  void ResetRoles(){
          player.setLostMole(player.getLostMole()+1);
-//        lostMole++;
-//        SetLostMoleText();
         SetUIText(lostTextView,"Perdidos: ", player.getLostMole());
     }
 
     public void GoOutSceneGameplay() {
         mediaPlayer.stop();
+        SavePlayerProps();
+
 
         Intent intent = new Intent(this, MainActivity.class);
-        finish();
         startActivity(intent);
-        GameplayActivity.this.finish();
+        finish();
 
-        SavePlayerProps();
     }
 
     public  void onClickExit(View view) {
@@ -196,14 +182,12 @@ public class GameplayActivity extends AppCompatActivity {
         ImageView image = (ImageView) iView;
         image.setImageResource(R.drawable.buraco);
         player.setHitMole(player.getHitMole()+1);
-//        hitMole++;
         SetUIText(pointTextView, "Acertos: ",player.getHitMole());
     }
 
 
 
     private  void SetScore() {
-//    score = (hitMole - lostMole);
     SetUIText(scoreTextView,"Score: ", player.getScore());
     edPrefs.putInt("Score", player.getScore());
     edPrefs.apply();

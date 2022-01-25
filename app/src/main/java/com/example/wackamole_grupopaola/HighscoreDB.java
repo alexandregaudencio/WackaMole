@@ -16,7 +16,7 @@ public class HighscoreDB extends SQLiteOpenHelper {
 
 
     public HighscoreDB(@Nullable Context context) {
-        super(context, "HighscoreDB", null, 14);
+        super(context, "HighscoreDB", null, 15);
 
     }
 
