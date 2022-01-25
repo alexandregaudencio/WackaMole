@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     //  RETORNA SE O CAMPO DE ENTRADA DE TEXTO ESTÁ VAZIO
     private boolean isEditTextVoid() {
-//        nickEditText.getText() == ""
+//        nickEditText.getText().toString() == ""
         if(nickEditText.getText().equals("")) {
             Toast.makeText(this, "Define Nickname", Toast.LENGTH_SHORT).show();
             return true;
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     private void SetPprefsProps(String nickname) {
         SharedPreferences.Editor edPrefs = prefs.edit();
         edPrefs.putString("Nickname", nickname );
-//        edPrefs.putInt("Score", 0);
+        edPrefs.putInt("Score", 0);
         edPrefs.apply();
 
 

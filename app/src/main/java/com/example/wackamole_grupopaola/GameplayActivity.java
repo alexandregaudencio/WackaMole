@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -52,7 +53,6 @@ public class GameplayActivity extends AppCompatActivity {
         prefs = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
         edPrefs = prefs.edit();
 
-
         PlayMusic();
 
         timerTextView = findViewById(R.id.timerText);
@@ -84,8 +84,9 @@ public class GameplayActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        nickTextView.setText( prefs.getString("Nickname", "CHAVE NÃO EXISTE." ));
 
+        nickTextView.setText( prefs.getString("Nickname", "CHAVE NÃO EXISTE." ));
+//        player.setNickname(prefs.getString("Nickname", "CHAVE NÃO EXISTE."));
 
     }
 
@@ -215,9 +216,8 @@ private void SetUIText(TextView textView, String preText,Integer value) {
 
 
 private void SavePlayerProps() {
-//    Player player = new Player();
-    player.setNickname(prefs.getString("Nickname", "CHAVE NÃO EXISTE."));
-//    player.setScore(prefs.getInt("Score",0));
+    player.setNickname(prefs.getString("Nickname", "CHAVE NÃO EXISTE." ));
+//    Toast.makeText(this, "Nick:"+player.getNickname()+" Score:"+player.getScore(), Toast.LENGTH_SHORT).show();
     highscoreDB.AddPlayer(player);
     highscoreDB.close();
 }

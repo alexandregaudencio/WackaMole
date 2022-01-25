@@ -16,7 +16,7 @@ public class HighscoreDB extends SQLiteOpenHelper {
 
 
     public HighscoreDB(@Nullable Context context) {
-        super(context, "HighscoreDB", null, 13);
+        super(context, "HighscoreDB", null, 14);
 
     }
 
@@ -44,7 +44,7 @@ public class HighscoreDB extends SQLiteOpenHelper {
 
         values.put("Nickname", player.getNickname() );
         values.put("Score", player.getScore());
-        db.insertOrThrow("Highscore",null, values);
+        db.insert("Highscore",null, values);
 
 
     }

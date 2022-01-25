@@ -7,19 +7,14 @@ public class Player {
     Integer lostMole = 0;
     Integer hitMole = 0;
 
-    public Integer getScore() {
-//        score = (hitMole-lostMole);
-//        return (score);
-        return hitMole-lostMole;
-
-    }
+    public Integer getScore() { return score;}
     public void setScore(Integer value) { score = value; }
 
     public String getNickname() {
         return nickname;
     }
-    public void setNickname(String nickname) {
-        nickname = nickname;
+    public void setNickname(String value) {
+        nickname = value;
     }
 
     public Integer getHitMole() {
@@ -27,10 +22,15 @@ public class Player {
     }
     public void setHitMole(Integer value) {
         hitMole = value;
+        score = hitMole-lostMole;
     }
 
     public Integer getLostMole() {
         return lostMole;
     }
-    public void setLostMole(Integer value) { lostMole = value; }
+    public void setLostMole(Integer value) {
+        lostMole = value;
+        score = hitMole-lostMole;
+    }
+
 }
