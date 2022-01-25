@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grama">
+
+    <TextView
+        android:id="@+id/nickTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Game"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:onClick="onClickExit"
+        android:text="Exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="89dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="12dp"
+        android:background="#000000"
+        android:text="Time: 0"
+        android:textAlignment="center"
+        android:textColor="#F8F5F5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lostScore"
+        android:layout_width="89dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="32dp"
+        android:background="#000000"
+        android:text="perdidos: 0"
+        android:textAlignment="center"
+        android:textColor="#F8F5F5"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="89dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="32dp"
+        android:background="#000000"
+        android:text="Score: 0"
+        android:textAlignment="center"
+        android:textColor="#F8F5F5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pointSocre"
+        android:layout_width="89dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="12dp"
+        android:background="#000000"
+        android:text="Acertos: 0"
+        android:textAlignment="center"
+        android:textColor="#F8F5F5"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="184dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="true"
+        android:duplicateParentState="false"
+        android:onClick="onMoleClicked"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22"
+        app:srcCompat="@drawable/buraco"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="184dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="true"
+        android:duplicateParentState="false"
+        android:onClick="onMoleClicked"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.396"
+        app:srcCompat="@drawable/buraco"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="184dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="true"
+        android:duplicateParentState="false"
+        android:onClick="onMoleClicked"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.577"
+        app:srcCompat="@drawable/buraco"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton7"
+        android:layout_width="184dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="true"
+        android:duplicateParentState="false"
+        android:onClick="onMoleClicked"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.755"
+        app:srcCompat="@drawable/buraco"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="184dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="192dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="true"
+        android:duplicateParentState="false"
+        android:onClick="onMoleClicked"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.399"
+        app:srcCompat="@drawable/buraco"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="184dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="192dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="true"
+        android:duplicateParentState="false"
+        android:onClick="onMoleClicked"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.577"
+        app:srcCompat="@drawable/buraco"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="184dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="192dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="true"
+        android:duplicateParentState="false"
+        android:onClick="onMoleClicked"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.755"
+        app:srcCompat="@drawable/buraco"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="184dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:cropToPadding="true"
+        android:duplicateParentState="false"
+        android:onClick="onMoleClicked"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22"
+        app:srcCompat="@drawable/buraco"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
