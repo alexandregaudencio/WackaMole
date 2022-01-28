@@ -39,7 +39,7 @@ public class GameplayActivity extends AppCompatActivity {
     Player player = new Player();
     Random random = new Random();
 
-    
+
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
