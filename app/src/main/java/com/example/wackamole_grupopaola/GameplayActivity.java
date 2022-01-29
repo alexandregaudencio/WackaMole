@@ -6,17 +6,29 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.games.PlayersClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameplayActivity extends AppCompatActivity {
+
+
 
     ArrayList<ImageView> imageViewList = new ArrayList<>();
 
@@ -43,6 +55,7 @@ public class GameplayActivity extends AppCompatActivity {
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         setContentView(R.layout.activity_gameplay);
 
@@ -87,6 +100,9 @@ public class GameplayActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+
+
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -118,6 +134,7 @@ public class GameplayActivity extends AppCompatActivity {
         }
 
     }
+
 
 
 

@@ -69,8 +69,6 @@ public class HighscoreDB extends SQLiteOpenHelper {
             allPlayers.add(player);
         }
 
-
-
         Player[] playerArray = new Player[allPlayers.size()];
         return HighPlayersSort(allPlayers.toArray(playerArray));
 
