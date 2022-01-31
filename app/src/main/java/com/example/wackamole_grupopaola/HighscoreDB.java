@@ -107,8 +107,9 @@ public class HighscoreDB extends SQLiteOpenHelper {
     }
 
 
-    public DataPlayer ReturnFirstOne() {
-        return FindRanking().get(0);
+    public int ReturnFirstOneScore() {
+
+        return FindRanking() != null ? FindRanking().get(0).getScore() : 0  ;
     }
 
 

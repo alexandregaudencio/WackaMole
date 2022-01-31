@@ -132,9 +132,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         try{
-        leaderboardsClient.submitScore( leaderboardCode ,highscoreDB.ReturnFirstOne().getScore());
+        leaderboardsClient.submitScore( leaderboardCode ,highscoreDB.ReturnFirstOneScore());
         }catch (Exception e) {
-            Log.i("GSMConnected_onResume", e.getMessage());
+            Log.i("ILeaderboard", e.getMessage());
         }
 
 
