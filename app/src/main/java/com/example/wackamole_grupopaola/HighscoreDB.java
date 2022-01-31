@@ -49,7 +49,7 @@ public class HighscoreDB extends SQLiteOpenHelper {
 
     }
 
-    public List<DataPlayer> FindHighscore() {
+    public List<DataPlayer> FindRanking() {
         SQLiteDatabase db = getReadableDatabase();
         String sql = "SELECT * FROM Highscore;";
 
@@ -102,10 +102,13 @@ public class HighscoreDB extends SQLiteOpenHelper {
             }
         }
 
-
-
         List<DataPlayer> dataPlayerList = new ArrayList(Arrays.asList(dataPlayers));
         return dataPlayerList;
+    }
+
+
+    public DataPlayer ReturnFirstOne() {
+        return FindRanking().get(0);
     }
 
 

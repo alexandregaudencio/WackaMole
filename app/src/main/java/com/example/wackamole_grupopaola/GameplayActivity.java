@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.games.LeaderboardsClient;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -36,6 +38,9 @@ public class GameplayActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     SharedPreferences prefs;
     SharedPreferences.Editor edPrefs;
+
+    LeaderboardsClient leaderboardsClient;
+    private static String leaderboardCode ="CgkI6ra7oIAbEAIQAQ";
 
     DataPlayer dataPlayer = new DataPlayer();
     Random random = new Random();
@@ -195,23 +200,24 @@ public class GameplayActivity extends AppCompatActivity {
 
 
     private  void SetScore() {
-    SetUIText(scoreTextView,"Score: ", dataPlayer.getScore());
-    edPrefs.putInt("Score", dataPlayer.getScore());
-    edPrefs.apply();
-}
+        SetUIText(scoreTextView,"Score: ", dataPlayer.getScore());
+        edPrefs.putInt("Score", dataPlayer.getScore());
+        edPrefs.apply();
+    }
 
-private void SetUIText(TextView textView, String preText,Integer value) {
+    private void SetUIText(TextView textView, String preText,Integer value) {
         textView.setText(preText+Integer.toString(value));
-}
+    }
 
 
 
-private void SavePlayerProps() {
-    dataPlayer.setNickname(prefs.getString("Nickname", "CHAVE NÃO EXISTE." ));
-//    Toast.makeText(this, "Nick:"+player.getNickname()+" Score:"+player.getScore(), Toast.LENGTH_SHORT).show();
-    highscoreDB.AddPlayer(dataPlayer);
-    highscoreDB.close();
-}
+    private void SavePlayerProps() {
+        dataPlayer.setNickname(prefs.getString("Nickname", "CHAVE NÃO EXISTE." ));
+    //    Toast.makeText(this, "Nick:"+player.getNickname()+" Score:"+player.getScore(), Toast.LENGTH_SHORT).show();
+        highscoreDB.AddPlayer(dataPlayer);
+        highscoreDB.close();
+
+    }
 
 
 }

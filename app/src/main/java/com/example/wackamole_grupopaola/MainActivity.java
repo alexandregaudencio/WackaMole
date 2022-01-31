@@ -28,7 +28,6 @@ import com.google.android.gms.games.LeaderboardsClient;
 import com.google.android.gms.games.Player;
 import com.google.android.gms.games.PlayersClient;
 import com.google.android.gms.games.GamesClient;
-import com.google.android.gms.games.PlayersClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private AchievementsClient achievementsClient ;
     private LeaderboardsClient leaderboardsClient;
     private static final int RC_LEADERBOARD = 0000;
-
+    private static String achievementsCode1 = "CgkI6ra7oIAbEAIQAg";
+    private static String leaderboardCode ="CgkI6ra7oIAbEAIQAQ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,14 +127,15 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, nickEditText.getText(), Toast.LENGTH_SHORT).show();
 
         UpdateRanking();
+        //ATIVA UM ACHTIVEMENT
+//        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)).unlock(achievementsCode1);
 
 
-//        leaderboardsClient.submitScore(nome, pontos);
-//        try{
-//            leaderboardsClient.submitScore(getString(R.string.leaderBoard),sortValues[5]);
-//        }catch (Exception e) {
-//            Log.i("GSMConnected_onResume", e.getMessage());
-//        }
+        try{
+        leaderboardsClient.submitScore( leaderboardCode ,highscoreDB.ReturnFirstOne().getScore());
+        }catch (Exception e) {
+            Log.i("GSMConnected_onResume", e.getMessage());
+        }
 
 
 
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void UpdateRanking() {
         HighscoreDB highscoreDB = new HighscoreDB(getApplicationContext());
-        List<DataPlayer> players = highscoreDB.FindHighscore();
+        List<DataPlayer> players = highscoreDB.FindRanking();
         List<String> nicknames = new ArrayList<String>();
         List<Integer> scores = new ArrayList<Integer>();
 
@@ -268,7 +269,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
     private  void onConnected(GoogleSignInAccount googleSignInAccount) {
         playersClient = Games.getPlayersClient(this, googleSignInAccount);
