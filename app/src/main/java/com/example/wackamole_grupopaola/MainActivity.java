@@ -22,12 +22,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.games.AchievementsClient;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.LeaderboardsClient;
 import com.google.android.gms.games.Player;
 import com.google.android.gms.games.PlayersClient;
 import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.games.PlayersClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
@@ -49,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient googleSignInClient;
     private PlayersClient playersClient;
     private static final int RC_SIGNIN = 4002;
-
+    private AchievementsClient achievementsClient ;
+    private LeaderboardsClient leaderboardsClient;
+    private static final int RC_LEADERBOARD = 0000;
 
 
     @Override
@@ -59,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         ///////////////////////
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build();
         googleSignInClient = GoogleSignIn.getClient(this,gso);
+
+
         //////////////////////
 
 
@@ -77,6 +85,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //////////////////////////////////////
+    private void showLeaderboard() {
+        leaderboardsClient.getAllLeaderboardsIntent()
+                .addOnSuccessListener(new OnSuccessListener<Intent>() {
+                    @Override
+                    public void onSuccess(Intent intent) {
+                        startActivityForResult (intent,RC_LEADERBOARD);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("Leaderboard", e.getMessage());
+            }
+        });
+    }
+
+    public void onShowAchievementsRequested() {
+        achievementsClient.getAchievementsIntent()
+                .addOnSuccessListener(new OnSuccessListener<Intent>() {
+                    @Override
+                    public void onSuccess(Intent intent) {
+                        startActivityForResult(intent, RC_LEADERBOARD);
+                    }
+                });
+    }
+///////////////////////////////////
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -92,11 +128,22 @@ public class MainActivity extends AppCompatActivity {
 
         UpdateRanking();
 
-//       String status = Environment.getExternalStorageState();
-//        Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
+
+//        leaderboardsClient.submitScore(nome, pontos);
+//        try{
+//            leaderboardsClient.submitScore(getString(R.string.leaderBoard),sortValues[5]);
+//        }catch (Exception e) {
+//            Log.i("GSMConnected_onResume", e.getMessage());
+//        }
+
+
 
     }
 
+    public void onClickRanking(View view) {
+        showLeaderboard();
+        onShowAchievementsRequested();
+    }
     public void onClickStart(View view) {
 
         if(!isEditTextVoid()) {
@@ -230,6 +277,9 @@ public class MainActivity extends AppCompatActivity {
         gamesClient.setViewForPopups(findViewById(R.id.popupTextView));
         gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
 
+        achievementsClient = Games.getAchievementsClient(this, googleSignInAccount);
+        leaderboardsClient = Games.getLeaderboardsClient(this, googleSignInAccount);
+
         playersClient.getCurrentPlayer().addOnCompleteListener(this,
                 new OnCompleteListener<Player>() {
                     @Override
@@ -238,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful()) {
                             playerName = task.getResult().getDisplayName();
                             Log.i("GMSConnection", playerName);
+                            nickEditText.setText(playerName);
                         } else {
                             Exception e = task.getException();
                             Log.i("GMSConnection", e.toString());
