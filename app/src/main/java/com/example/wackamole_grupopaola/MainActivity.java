@@ -226,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
     private  void onConnected(GoogleSignInAccount googleSignInAccount) {
         playersClient = Games.getPlayersClient(this, googleSignInAccount);
 
-
         GamesClient gamesClient = Games.getGamesClient(this, googleSignInAccount);
         gamesClient.setViewForPopups(findViewById(R.id.popupTextView));
         gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
@@ -241,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.i("GMSConnection", playerName);
                         } else {
                             Exception e = task.getException();
-                            Log.i("GMSConnection", e.toString());
+                            Log.i("GMSConnection", e.toString()+"fUDEU!!!");
                         }
                     }
                 });

@@ -33,13 +33,18 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    //Google Login
+//    //Google Login
+//    implementation 'com.google.android.gms:play-services-auth:20.0.1'
+//    //Utility Classes
+//    implementation 'com.google.android.gms:play-services-base:18.0.1'
+//    //Play Game Services for Android
+//    implementation 'com.google.android.gms:play-services-games:22.0.1'
+//    //faltou o Sign in
+
     implementation 'com.google.android.gms:play-services-auth:20.0.1'
-    //Utility Classes
+    implementation 'com.google.android.gms:play-services-identity:18.0.1'
     implementation 'com.google.android.gms:play-services-base:18.0.1'
-    //Play Game Services for Android
-    implementation 'com.google.android.gms:play-services-games:22.0.1'
-    //faltou o Sign in
+    implementation 'com.google.android.gms:play-services-games:22.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
