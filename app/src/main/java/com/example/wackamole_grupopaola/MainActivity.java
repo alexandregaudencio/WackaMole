@@ -222,6 +222,7 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+
     private  void onConnected(GoogleSignInAccount googleSignInAccount) {
         playersClient = Games.getPlayersClient(this, googleSignInAccount);
 
