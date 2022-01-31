@@ -23,6 +23,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.Player;
+import com.google.android.gms.games.PlayersClient;
 import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.games.PlayersClient;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -135,11 +137,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void UpdateRanking() {
         HighscoreDB highscoreDB = new HighscoreDB(getApplicationContext());
-        List<Player> players = highscoreDB.FindHighscore();
+        List<DataPlayer> players = highscoreDB.FindHighscore();
         List<String> nicknames = new ArrayList<String>();
         List<Integer> scores = new ArrayList<Integer>();
 
-        for(Player p : players) {
+        for(DataPlayer p : players) {
             nicknames.add(p.getNickname());
             scores.add(p.getScore());
         }
@@ -149,12 +151,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<Integer> scoreArrayAdapter = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_list_item_1, scores);
         listViewScores.setAdapter(scoreArrayAdapter);
     }
-
-
-
-
-
-
 
 
 
@@ -198,10 +194,14 @@ public class MainActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
 
                 onConnected(account);
+                Log.i("GMSConnection", "onActivityResult: OK!");
+
 
             } catch (ApiException e) {
                 Log.i("GMSConnection", e.getMessage());
                 onDisconnected();
+                Log.i("GMSConnection", "onActivityResult: OK!");
+
             }
         }
     }
@@ -225,13 +225,13 @@ public class MainActivity extends AppCompatActivity {
 
     private  void onConnected(GoogleSignInAccount googleSignInAccount) {
         playersClient = Games.getPlayersClient(this, googleSignInAccount);
-
         GamesClient gamesClient = Games.getGamesClient(this, googleSignInAccount);
+
         gamesClient.setViewForPopups(findViewById(R.id.popupTextView));
         gamesClient.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
 
         playersClient.getCurrentPlayer().addOnCompleteListener(this,
-                new OnCompleteListener<com.google.android.gms.games.Player>() {
+                new OnCompleteListener<Player>() {
                     @Override
                     public void onComplete(@NonNull Task<com.google.android.gms.games.Player> task) {
                         String playerName = "";
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.i("GMSConnection", playerName);
                         } else {
                             Exception e = task.getException();
-                            Log.i("GMSConnection", e.toString()+"fUDEU!!!");
+                            Log.i("GMSConnection", e.toString());
                         }
                     }
                 });

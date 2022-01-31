@@ -6,22 +6,11 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.games.PlayersClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -48,7 +37,7 @@ public class GameplayActivity extends AppCompatActivity {
     SharedPreferences prefs;
     SharedPreferences.Editor edPrefs;
 
-    Player player = new Player();
+    DataPlayer dataPlayer = new DataPlayer();
     Random random = new Random();
 
 
@@ -173,8 +162,8 @@ public class GameplayActivity extends AppCompatActivity {
     }
 
     private  void ResetRoles(){
-         player.setLostMole(player.getLostMole()+1);
-        SetUIText(lostTextView,"Perdidos: ", player.getLostMole());
+         dataPlayer.setLostMole(dataPlayer.getLostMole()+1);
+        SetUIText(lostTextView,"Perdidos: ", dataPlayer.getLostMole());
     }
 
     public void GoOutSceneGameplay() {
@@ -199,15 +188,15 @@ public class GameplayActivity extends AppCompatActivity {
         iView.setClickable(false);
         ImageView image = (ImageView) iView;
         image.setImageResource(R.drawable.buraco);
-        player.setHitMole(player.getHitMole()+1);
-        SetUIText(pointTextView, "Acertos: ",player.getHitMole());
+        dataPlayer.setHitMole(dataPlayer.getHitMole()+1);
+        SetUIText(pointTextView, "Acertos: ", dataPlayer.getHitMole());
     }
 
 
 
     private  void SetScore() {
-    SetUIText(scoreTextView,"Score: ", player.getScore());
-    edPrefs.putInt("Score", player.getScore());
+    SetUIText(scoreTextView,"Score: ", dataPlayer.getScore());
+    edPrefs.putInt("Score", dataPlayer.getScore());
     edPrefs.apply();
 }
 
@@ -218,9 +207,9 @@ private void SetUIText(TextView textView, String preText,Integer value) {
 
 
 private void SavePlayerProps() {
-    player.setNickname(prefs.getString("Nickname", "CHAVE NÃO EXISTE." ));
+    dataPlayer.setNickname(prefs.getString("Nickname", "CHAVE NÃO EXISTE." ));
 //    Toast.makeText(this, "Nick:"+player.getNickname()+" Score:"+player.getScore(), Toast.LENGTH_SHORT).show();
-    highscoreDB.AddPlayer(player);
+    highscoreDB.AddPlayer(dataPlayer);
     highscoreDB.close();
 }
 

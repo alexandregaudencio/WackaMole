@@ -1,6 +1,6 @@
 package com.example.wackamole_grupopaola;
 
-public class Player {
+public class DataPlayer {
 
     String nickname;
     Integer score = 0;

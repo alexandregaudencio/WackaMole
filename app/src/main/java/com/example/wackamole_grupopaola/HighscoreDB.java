@@ -36,26 +36,26 @@ public class HighscoreDB extends SQLiteOpenHelper {
 
 
     //TODO: passar objeto "PLAYER" como parâmetro
-    public void AddPlayer(Player player) {
+    public void AddPlayer(DataPlayer dataPlayer) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
 
 
-        values.put("Nickname", player.getNickname() );
-        values.put("Score", player.getScore());
+        values.put("Nickname", dataPlayer.getNickname() );
+        values.put("Score", dataPlayer.getScore());
         db.insert("Highscore",null, values);
 
 
     }
 
-    public List<Player> FindHighscore() {
+    public List<DataPlayer> FindHighscore() {
         SQLiteDatabase db = getReadableDatabase();
         String sql = "SELECT * FROM Highscore;";
 
         Cursor cursor = db.rawQuery(sql, null);
 
-        List<Player> allPlayers = new ArrayList<Player>();
+        List<DataPlayer> allDataPlayers = new ArrayList<DataPlayer>();
 
         while(cursor.moveToNext() ) {
             String nick = cursor.getString((cursor.getColumnIndex("Nickname")));
@@ -63,19 +63,19 @@ public class HighscoreDB extends SQLiteOpenHelper {
             //DB: https://www.youtube.com/watch?v=9ztGeljlMgs&list=PLHI7bDSQYkJjP1hURxnMWNOjMbLyr_MFu&index=2
             //DO ZE: https://www.youtube.com/watch?v=ymMFK9FndYo
 
-            Player player = new Player();
-            player.setNickname(nick);
-            player.setScore(score);
-            allPlayers.add(player);
+            DataPlayer dataPlayer = new DataPlayer();
+            dataPlayer.setNickname(nick);
+            dataPlayer.setScore(score);
+            allDataPlayers.add(dataPlayer);
         }
 
-        Player[] playerArray = new Player[allPlayers.size()];
-        return HighPlayersSort(allPlayers.toArray(playerArray));
+        DataPlayer[] dataPlayerArray = new DataPlayer[allDataPlayers.size()];
+        return HighPlayersSort(allDataPlayers.toArray(dataPlayerArray));
 
     }
 
-    private List<Player> HighPlayersSort(Player[] players) {
-        Player playerTranspose;
+    private List<DataPlayer> HighPlayersSort(DataPlayer[] dataPlayers) {
+        DataPlayer dataPlayerTranspose;
 //        for(int i = players.length-1; i > 0; i--) {
 //            for (int j = 0; j < i; j++) {
 //                if(players[j].getScore() > players[j+1].getScore()) {
@@ -92,11 +92,11 @@ public class HighscoreDB extends SQLiteOpenHelper {
 
         while (flag) {
             flag = false;
-            for(int j= 0; j < players.length -1; j++){
-                if(players[j].getScore() < players[j+1].getScore()) {
-                    playerTranspose = players[j];
-                    players[j] =  players[j+1];
-                    players[j+1] = playerTranspose;
+            for(int j = 0; j < dataPlayers.length -1; j++){
+                if(dataPlayers[j].getScore() < dataPlayers[j+1].getScore()) {
+                    dataPlayerTranspose = dataPlayers[j];
+                    dataPlayers[j] =  dataPlayers[j+1];
+                    dataPlayers[j+1] = dataPlayerTranspose;
                     flag = true;
                 }
             }
@@ -104,8 +104,8 @@ public class HighscoreDB extends SQLiteOpenHelper {
 
 
 
-        List<Player> playerList = new ArrayList(Arrays.asList(players));
-        return  playerList;
+        List<DataPlayer> dataPlayerList = new ArrayList(Arrays.asList(dataPlayers));
+        return dataPlayerList;
     }
 
 
