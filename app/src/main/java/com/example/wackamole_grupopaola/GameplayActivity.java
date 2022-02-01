@@ -6,12 +6,15 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.games.Games;
 import com.google.android.gms.games.LeaderboardsClient;
 
 import java.util.ArrayList;
@@ -41,6 +44,10 @@ public class GameplayActivity extends AppCompatActivity {
 
     LeaderboardsClient leaderboardsClient;
     private static String leaderboardCode ="CgkI6ra7oIAbEAIQAQ";
+
+    private static String achievementsCode1 = "CgkI6ra7oIAbEAIQAg";
+    private static String achievementsCode2 = "CgkI6ra7oIAbEAIQAw";
+    private static String achievementsCode3 = "CgkI6ra7oIAbEAIQBA";
 
     DataPlayer dataPlayer = new DataPlayer();
     Random random = new Random();
@@ -119,6 +126,7 @@ public class GameplayActivity extends AppCompatActivity {
 
     public void Update() {
         SetScore();
+        CheckAchievements();
 
         CheckTimeToSpawn();
         timerTextView.setText("Time: "+Integer.toString((int)gameTimer));
@@ -217,7 +225,20 @@ public class GameplayActivity extends AppCompatActivity {
         highscoreDB.AddPlayer(dataPlayer);
         highscoreDB.close();
 
+
     }
 
+    private void CheckAchievements() {
+        if(dataPlayer.getScore() >= 5) {
+            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)).unlock(achievementsCode1);
+        }
+        if(dataPlayer.getScore() >= 10) {
+            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)).unlock(achievementsCode2);
+        }
+        if(dataPlayer.getScore() >= 15) {
+            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)).unlock(achievementsCode3);
+
+        }
+    }
 
 }

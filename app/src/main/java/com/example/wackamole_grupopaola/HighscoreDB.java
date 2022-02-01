@@ -16,7 +16,7 @@ public class HighscoreDB extends SQLiteOpenHelper {
 
 
     public HighscoreDB(@Nullable Context context) {
-        super(context, "HighscoreDB", null, 15);
+        super(context, "HighscoreDB", null, 18);
 
     }
 
@@ -109,15 +109,8 @@ public class HighscoreDB extends SQLiteOpenHelper {
 
     public int ReturnFirstOneScore() {
 
-        return FindRanking() != null ? FindRanking().get(0).getScore() : 0  ;
+        return FindRanking().size() > 0 ?  FindRanking().get(0).score : 0  ;
     }
-
-
-//    private List<Player> TenFirst(List<Player> p) {
-//        return
-//    }
-
-
 
 
 }

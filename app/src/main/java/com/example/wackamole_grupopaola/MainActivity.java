@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     private AchievementsClient achievementsClient ;
     private LeaderboardsClient leaderboardsClient;
     private static final int RC_LEADERBOARD = 0000;
-    private static String achievementsCode1 = "CgkI6ra7oIAbEAIQAg";
     private static String leaderboardCode ="CgkI6ra7oIAbEAIQAQ";
 
     @Override
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onShowAchievementsRequested() {
+    public void ShowAchievements() {
         achievementsClient.getAchievementsIntent()
                 .addOnSuccessListener(new OnSuccessListener<Intent>() {
                     @Override
@@ -118,7 +117,14 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         /////////////////////////
         SignInSilently();
+
+        if(leaderboardsClient != null) {
+            leaderboardsClient.submitScore( leaderboardCode ,highscoreDB.ReturnFirstOneScore());
+            Log.i("SAVE LEADER", "SavePlayerProps:"+ highscoreDB.ReturnFirstOneScore());
+
+        }
         ////////////////////////
+
     }
 
     @Override
@@ -128,22 +134,21 @@ public class MainActivity extends AppCompatActivity {
 
         UpdateRanking();
         //ATIVA UM ACHTIVEMENT
-//        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)).unlock(achievementsCode1);
 
-
-        try{
-        leaderboardsClient.submitScore( leaderboardCode ,highscoreDB.ReturnFirstOneScore());
-        }catch (Exception e) {
-            Log.i("ILeaderboard", e.getMessage());
-        }
 
 
 
     }
 
     public void onClickRanking(View view) {
+        if(leaderboardsClient != null) {
+            leaderboardsClient.submitScore( leaderboardCode ,highscoreDB.ReturnFirstOneScore());
+        }
         showLeaderboard();
-        onShowAchievementsRequested();
+    }
+
+    public void onClickRAchievements(View view) {
+        ShowAchievements();
     }
     public void onClickStart(View view) {
 

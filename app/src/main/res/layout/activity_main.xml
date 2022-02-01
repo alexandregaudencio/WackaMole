@@ -12,11 +12,11 @@
         android:id="@+id/TitleGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:text="Wack a Mole Game"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,28 +24,25 @@
         android:id="@+id/editTextNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnPlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleGame"
-        app:layout_constraintVertical_bias="0.708"
+        app:layout_constraintTop_toTopOf="@+id/popupTextView"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
         android:onClick="onClickStart"
         android:text="Play"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleGame" />
+        app:layout_constraintTop_toBottomOf="@+id/SignOutButton" />
 
     <TextView
         android:id="@+id/textView"
@@ -54,7 +51,7 @@
         android:layout_marginTop="80dp"
         android:text="Nickname:"
         app:layout_constraintEnd_toStartOf="@+id/editTextNickname"
-        app:layout_constraintHorizontal_bias="0.684"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,18 +59,18 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="212dp"
         android:text="HIGHSCORE"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/ListViewNick"
-        android:layout_width="194dp"
-        android:layout_height="511dp"
+        android:layout_width="182dp"
+        android:layout_height="398dp"
         android:layout_marginStart="39dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,8 +82,8 @@
 
     <ListView
         android:id="@+id/ListViewScores"
-        android:layout_width="65dp"
-        android:layout_height="516dp"
+        android:layout_width="58dp"
+        android:layout_height="401dp"
         android:layout_marginStart="41dp"
         android:layout_marginEnd="66dp"
         android:background="#FFFFFF"
@@ -102,12 +99,12 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:onClick="onClickSign"
         android:text="Sign In"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toEndOf="@+id/TitleGame"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -115,15 +112,15 @@
         android:id="@+id/SignOutButton"
         android:layout_width="85dp"
         android:layout_height="38dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="4dp"
         android:onClick="onClickSign"
         android:text="Sign Out"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/editTextNickname"
-        app:layout_constraintTop_toBottomOf="@+id/SignInButton" />
+        app:layout_constraintStart_toEndOf="@+id/SignInButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/popupTextView"
@@ -138,14 +135,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/Achievements"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="728dp"
+        android:onClick="onClickRAchievements"
+        android:text="Achievements"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="728dp"
         android:onClick="onClickRanking"
-        android:text="HighScorebutton"
+        android:text="Ranking"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.572"
+        app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
